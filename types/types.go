@@ -105,5 +105,5 @@ func (NoCommandSuppliedErr) Error() string {
 type NoGithubOauthTokenProvidedErr struct{}
 
 func (NoGithubOauthTokenProvidedErr) Error() string {
-	return fmt.Sprintf("You must export a valid Github personal access token as GITHUB_OAUTH_TOKEN")
+	return fmt.Sprintf("You must export a valid Github personal access token as GIX_XARGS_AUTH_TOKEN")
 }

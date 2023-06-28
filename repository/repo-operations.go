@@ -33,7 +33,7 @@ func cloneLocalRepository(config *config.GitXargsConfig, repo *github.Repository
 
 	logger.WithFields(logrus.Fields{
 		"Repo": repo.GetName(),
-	}).Debug("Attempting to clone repository using GITHUB_OAUTH_TOKEN")
+	}).Debug("Attempting to clone repository using GIX_XARGS_AUTH_TOKEN")
 
 	repositoryDir, tmpDirErr := ioutil.TempDir("", fmt.Sprintf("git-xargs-%s", repo.GetName()))
 	if tmpDirErr != nil {
@@ -50,7 +50,7 @@ func cloneLocalRepository(config *config.GitXargsConfig, repo *github.Repository
 		Progress: gitProgressBuffer,
 		Auth: &http.BasicAuth{
 			Username: repo.GetOwner().GetLogin(),
-			Password: os.Getenv("GITHUB_OAUTH_TOKEN"),
+			Password: os.Getenv("GIX_XARGS_AUTH_TOKEN"),
 		},
 	})
 
@@ -199,7 +199,7 @@ func checkoutLocalBranch(config *config.GitXargsConfig, ref *plumbing.Reference,
 		ReferenceName: branchName,
 		Auth: &http.BasicAuth{
 			Username: remoteRepository.GetOwner().GetLogin(),
-			Password: os.Getenv("GITHUB_OAUTH_TOKEN"),
+			Password: os.Getenv("GIX_XARGS_AUTH_TOKEN"),
 		},
 		Progress: gitProgressBuffer,
 	}
@@ -371,7 +371,7 @@ func pushLocalBranch(config *config.GitXargsConfig, remoteRepository *github.Rep
 		RemoteName: "origin",
 		Auth: &http.BasicAuth{
 			Username: remoteRepository.GetOwner().GetLogin(),
-			Password: os.Getenv("GITHUB_OAUTH_TOKEN"),
+			Password: os.Getenv("GIX_XARGS_AUTH_TOKEN"),
 		},
 	}
 	pushErr := localRepository.Push(po)

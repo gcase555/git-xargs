@@ -41,10 +41,10 @@ func NewClient(client *github.Client) GithubClient {
 	}
 }
 
-// ConfigureGithubClient creates a GitHub API client using the user-supplied GITHUB_OAUTH_TOKEN and returns the configured GitHub client
+// ConfigureGithubClient creates a GitHub API client using the user-supplied GIX_XARGS_AUTH_TOKEN and returns the configured GitHub client
 func ConfigureGithubClient() GithubClient {
-	// Ensure user provided a GITHUB_OAUTH_TOKEN
-	GithubOauthToken := os.Getenv("GITHUB_OAUTH_TOKEN")
+	// Ensure user provided a GIX_XARGS_AUTH_TOKEN
+	GithubOauthToken := os.Getenv("GIX_XARGS_AUTH_TOKEN")
 
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: GithubOauthToken},
@@ -58,9 +58,9 @@ func ConfigureGithubClient() GithubClient {
 	return client
 }
 
-// EnsureGithubOauthTokenSet is a sanity check that a value is exported for GITHUB_OAUTH_TOKEN
+// EnsureGithubOauthTokenSet is a sanity check that a value is exported for GIX_XARGS_AUTH_TOKEN
 func EnsureGithubOauthTokenSet() error {
-	if os.Getenv("GITHUB_OAUTH_TOKEN") == "" {
+	if os.Getenv("GIX_XARGS_AUTH_TOKEN") == "" {
 		return errors.WithStackTrace(types.NoGithubOauthTokenProvidedErr{})
 	}
 	return nil

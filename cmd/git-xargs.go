@@ -130,7 +130,7 @@ func handleRepoProcessing(config *config.GitXargsConfig) error {
 }
 
 // sanityCheckInputs performs validation on the user-supplied inputs to ensure we have everything we need:
-// 1. An exported GITHUB_OAUTH_TOKEN
+// 1. An exported GIX_XARGS_AUTH_TOKEN
 // 2. Arguments passed to the binary itself which should be executed against the targeted repos
 // 3. At least one of the three valid methods for selecting repositories
 func sanityCheckInputs(config *config.GitXargsConfig) error {

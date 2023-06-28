@@ -29,6 +29,6 @@ func TestCustomErrorStatements(t *testing.T) {
 	assert.Equal(t, "You must supply a valid command or script to execute", errNoCommandSupplied.Error())
 
 	errNoGithubOauthTokenProvided := NoGithubOauthTokenProvidedErr{}
-	assert.Equal(t, "You must export a valid Github personal access token as GITHUB_OAUTH_TOKEN", errNoGithubOauthTokenProvided.Error())
+	assert.Equal(t, "You must export a valid Github personal access token as GIX_XARGS_AUTH_TOKEN", errNoGithubOauthTokenProvided.Error())
 
 }

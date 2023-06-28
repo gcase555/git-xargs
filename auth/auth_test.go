@@ -15,14 +15,14 @@ func TestConfigureGithubClient(t *testing.T) {
 	assert.NotNil(t, client)
 }
 
-// TestNoGithubOauthTokenPassed temporarily drops the existing GITHUB_OAUTH_TOKEN env var to ensure that the validation
+// TestNoGithubOauthTokenPassed temporarily drops the existing GIX_XARGS_AUTH_TOKEN env var to ensure that the validation
 // code throws an error when it is missing. It then replaces it. This is therefore the one test that cannot be run in
 // parallel.
 func TestNoGithubOAuthTokenPassed(t *testing.T) {
-	token := os.Getenv("GITHUB_OAUTH_TOKEN")
-	defer os.Setenv("GITHUB_OAUTH_TOKEN", token)
+	token := os.Getenv("GIX_XARGS_AUTH_TOKEN")
+	defer os.Setenv("GIX_XARGS_AUTH_TOKEN", token)
 
-	os.Setenv("GITHUB_OAUTH_TOKEN", "")
+	os.Setenv("GIX_XARGS_AUTH_TOKEN", "")
 
 	err := EnsureGithubOauthTokenSet()
 	assert.Error(t, err)
